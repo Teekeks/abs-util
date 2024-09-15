@@ -1,0 +1,7 @@
+pick
+audiobookshelf@git+https://github.com/Teekeks/audiobookshelfAPI.git
+colorama~=0.4.6
+prompt_toolkit
+aiosqlite
+beautifulsoup4
+aiohttp
