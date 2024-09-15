@@ -30,4 +30,5 @@ Available actions
 - Syncing the "books" library to your kobo device which is mounted on G:\
 
 ```bash
-python -m abs_util kobo-sync -l books -kdir G:\```
+python -m abs_util kobo-sync -l books -kdir G:\
+```
