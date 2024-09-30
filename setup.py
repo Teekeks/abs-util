@@ -25,6 +25,9 @@ setup(
     packages=find_packages(),
     version=version,
     keywords=['audiobookshelf'],
+    entry_points={
+        'console_scripts': ['abs_util=abs_util.main:run'],
+    },
     install_requires=[
         'pick',
         'audiobookshelf@git+https://github.com/Teekeks/audiobookshelfAPI.git',
