@@ -11,7 +11,7 @@ from abs_util.actions.folder_from_goodreads import from_goodreads_parser
 def run():
     colorama.init(autoreset=True)
 
-    with open('config.json') as _f:
+    with open('../config.json') as _f:
         cfg = json.load(_f)
 
     parser = argparse.ArgumentParser(description='Audiobookshelf Utility',
