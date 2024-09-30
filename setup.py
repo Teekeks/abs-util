@@ -24,6 +24,7 @@ if version.endswith(('a', 'b', 'rc')):
 setup(
     packages=find_packages(),
     version=version,
+    python_requires='>=3.12',
     keywords=['audiobookshelf'],
     entry_points={
         'console_scripts': ['abs_util=abs_util.main:run'],
