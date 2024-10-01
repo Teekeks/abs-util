@@ -35,4 +35,7 @@ def run():
     kobo_sync_parser(sub_parser, cfg)
 
     args = parser.parse_args()
-    args.func(args, cfg)
+    try:
+        args.func(args, cfg)
+    except KeyboardInterrupt:
+        pass
