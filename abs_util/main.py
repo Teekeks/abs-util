@@ -3,20 +3,23 @@ import argparse
 import colorama
 import os
 
+
 from abs_util.actions.setup import setup_parser
 from abs_util.actions.clear_authors import clear_authors_parser
 from abs_util.actions.kobo_sync import kobo_sync_parser
 from abs_util.actions.folder_from_goodreads import from_goodreads_parser
+from abs_util.util import get_config_file_path
 
 
 def run():
     colorama.init(autoreset=True)
 
-    if not os.path.isfile('..config.json'):
-        with open('..config.json', 'w') as _f:
+    config_file = get_config_file_path()
+    if not os.path.isfile(config_file):
+        with open(config_file, 'w') as _f:
             json.dump({}, _f)
 
-    with open('../config.json') as _f:
+    with open(config_file) as _f:
         cfg = json.load(_f)
 
     parser = argparse.ArgumentParser(description='Audiobookshelf Utility',

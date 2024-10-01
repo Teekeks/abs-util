@@ -36,7 +36,8 @@ setup(
         'prompt_toolkit',
         'aiosqlite',
         'beautifulsoup4',
-        'aiohttp'
+        'aiohttp',
+        'platformdirs'
     ],
     package_data={'abs_util': ['py.typed']}
 )

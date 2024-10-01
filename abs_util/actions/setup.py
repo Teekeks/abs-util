@@ -5,7 +5,7 @@ from prompt_toolkit.shortcuts import prompt
 from prompt_toolkit.styles import Style
 from prompt_toolkit.output import ColorDepth
 
-from abs_util.util import add_default_args
+from abs_util.util import add_default_args, get_config_file_path
 
 
 def setup_action(args, cfg):
@@ -42,7 +42,8 @@ def setup_action(args, cfg):
         ]
         password = prompt(message, style=stype, color_depth=ColorDepth.TRUE_COLOR)
 
-    with open('config.json', 'w') as _f:
+    config_file = get_config_file_path()
+    with open(config_file, 'w') as _f:
         json.dump({
             'server': server if len(server) > 0 else args.server,
             'user': user if len(user) > 0 else args.user,

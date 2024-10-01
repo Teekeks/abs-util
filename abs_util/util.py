@@ -6,6 +6,16 @@ from colorama import Fore, Style
 from prompt_toolkit.shortcuts import prompt
 from prompt_toolkit.styles import Style as tk_Style
 from prompt_toolkit.output import ColorDepth
+from platformdirs import user_config_dir
+
+
+def get_config_file_path():
+    return os.path.join(
+        user_config_dir(
+            appname='abs_util',
+            appauthor='teekeks',
+            ensure_exists=True),
+        'config.json')
 
 
 def check_setup(args, cfg) -> List[str]:
