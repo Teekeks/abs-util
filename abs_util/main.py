@@ -26,7 +26,8 @@ def run():
                                      prog='abs_util',
                                      formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=100, width=400))
 
-    sub_parser = parser.add_subparsers(dest='action', title='actions', description='All actions supported by abs_util', metavar='action')
+    sub_parser = parser.add_subparsers(dest='action', title='actions', description='All actions supported by abs_util', metavar='action',
+                                       required=True)
 
     setup_parser(sub_parser, cfg)
     clear_authors_parser(sub_parser, cfg)
