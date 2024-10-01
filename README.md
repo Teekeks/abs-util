@@ -7,6 +7,16 @@ Utility program for various things related to your own Audiobookshelf instance.
 
 ## Install
 
+Python 3.12 is required to run this.
+
+### Using pipx
+
+```bash
+pipx install git+https://github.com/Teekeks/abs-util.git --python python3.12
+```
+
+### Using pip
+
 ```bash
 pip install -r ./requirements.txt
 ```
@@ -14,12 +24,12 @@ pip install -r ./requirements.txt
 ## Usage
 
 ```bash
-python -m abs_util <action>
+abs_util <action>
 ```
 
 Available actions
 
--  `setup`: Used to set up your default Audiobookshelf credentials
+- `setup`: Used to set up your default Audiobookshelf credentials
 - `clear-authors`: Remove authors with no books from either all or selected libraries
 - `goodreads-folder-import`: Create ABS compatible folders from Goodreads Series Link
 - `kobo-sync`: Sync a library with a USB connected Kobo Reader
@@ -30,5 +40,5 @@ Available actions
 - Syncing the "books" library to your kobo device which is mounted on G:\
 
 ```bash
-python -m abs_util kobo-sync -l books -kdir G:\
+abs_util kobo-sync -l books -kdir G:\
 ```
