@@ -23,7 +23,7 @@ def run():
         cfg = json.load(_f)
 
     parser = argparse.ArgumentParser(description='Audiobookshelf Utility',
-                                     prog='python -m abs_util',
+                                     prog='abs_util',
                                      formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=100, width=400))
 
     sub_parser = parser.add_subparsers(dest='action', title='actions', description='All actions supported by abs_util', metavar='action')
