@@ -25,6 +25,7 @@ async def action(args, cfg):
     series_title = soup.find('div', class_='responsiveSeriesHeader__title').text
     if series_title.endswith(' Series'):
         series_title = series_title.replace(' Series', '')
+    series_title = RE_FORBIDDEN_CHARS.sub('', series_title)
     print(f'{Fore.LIGHTCYAN_EX}Found series {Fore.GREEN}{series_title}')
     author = None
     for tag in soup.find_all('div', class_='listWithDividers__item'):
