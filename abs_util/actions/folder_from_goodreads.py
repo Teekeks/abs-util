@@ -13,7 +13,7 @@ import re
 
 RE_BOOK_NUMBER = re.compile(r'^Book (\d+\.?\d*)$')
 
-RE_FORBIDDEN_CHARS = re.compile(r'[<>:"/\\|?*]')
+RE_FORBIDDEN_CHARS = re.compile(r'[<>:"/\\|?*\',]')
 
 
 async def action(args, cfg):
