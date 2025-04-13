@@ -32,7 +32,6 @@ async def get_target_lib(args, client: ABSClient) -> dict:
 
 
 def build_kobo_tree(args, target_lib) -> List[dict]:
-    print(f'{Fore.LIGHTCYAN_EX}Building kobo reader tree...{Style.RESET_ALL}')
     _found = []
     if not os.path.isdir(args.kobo_dir):
         display_error(f'Kobo mount directory "{args.kobo_dir}" does not exists')
@@ -138,6 +137,7 @@ async def kobo_sync(args):
     lib_items = await client.get_library_items(target_lib['id'], limit=0)
     print(f'{Fore.LIGHTCYAN_EX}Found {Fore.GREEN}{lib_items["total"]}{Fore.LIGHTCYAN_EX} items in audiobookshelf')
     lib_items = {d['id']: d for d in lib_items['results']}
+    print(f'{Fore.LIGHTCYAN_EX}Building kobo reader tree...{Style.RESET_ALL}')
     kobo_items = build_kobo_tree(args, target_lib)
     print(f'{Fore.LIGHTCYAN_EX}Found {Fore.GREEN}{len(kobo_items)}{Fore.LIGHTCYAN_EX} items on kobo reader')
     kobo_item_ids = [k['id'] for k in kobo_items]
@@ -159,10 +159,13 @@ async def kobo_sync(args):
     for missing_item in missing_items:
         await sync_item(args, client, target_lib, missing_item)
     if len(missing_items) > 0:
-        print(f'{Fore.YELLOW}Missing items synced, please disconnect kobo reader, let it import the new items and reconnect it')
+        print(f'{Fore.LIGHTYELLOW_EX}Missing items synced, please disconnect kobo reader, let it import the new items and reconnect it')
         await db.close()
-        input(f'{Fore.YELLOW}Press [ENTER] to continue the process...')
+        input(f'{Fore.LIGHTYELLOW_EX}Press [ENTER] to continue the process...')
         db = await aiosqlite.connect(str(os.path.join(args.kobo_dir, '.kobo', 'KoboReader.sqlite')))
+        print(f'{Fore.LIGHTCYAN_EX}Building new kobo reader tree...{Style.RESET_ALL}')
+        kobo_items = build_kobo_tree(args, target_lib)
+        print(f'{Fore.LIGHTCYAN_EX}Found {Fore.GREEN}{len(kobo_items)}{Fore.LIGHTCYAN_EX} items on kobo reader')
     # sync metadata and progress of existing items
     print(f'{Fore.LIGHTCYAN_EX}Syncing metadata and progress...')
     for kobo_item in kobo_items:
