@@ -158,8 +158,13 @@ async def kobo_sync(args):
         print(f'{Fore.LIGHTCYAN_EX}No items missing from kobo reader')
     for missing_item in missing_items:
         await sync_item(args, client, target_lib, missing_item)
+    if len(missing_items) > 0:
+        print(f'{Fore.YELLOW}Missing items synced, please disconnect kobo reader, let it import the new items and reconnect it')
+        await db.close()
+        input(f'{Fore.YELLOW}Press [ENTER] to continue the process...')
+        db = await aiosqlite.connect(str(os.path.join(args.kobo_dir, '.kobo', 'KoboReader.sqlite')))
     # sync metadata and progress of existing items
-    print(f'{Fore.LIGHTCYAN_EX}Syncing metadata and progress of previously existing items...')
+    print(f'{Fore.LIGHTCYAN_EX}Syncing metadata and progress...')
     for kobo_item in kobo_items:
         await sync_metadata(args, client, db, target_lib, lib_items[kobo_item['id']], kobo_item)
     # TODO sync progress kobo -> abs
